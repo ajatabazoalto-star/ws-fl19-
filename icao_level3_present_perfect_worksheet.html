@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICAO Level 3 Aviation English Worksheet - Picken-Glish Aviation</title>
+<style>
+  :root {
+    --bg: #0b132b;
+    --card: #1c2541;
+    --border: #3a506b;
+    --accent: #00f5d4;
+    --accent-alt: #fca311;
+    --text: #f8f9fa;
+    --muted: #adb5bd;
+    --correct: #2ec4b6;
+    --wrong: #e63946;
+  }
+  * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  header {
+    background: linear-gradient(135deg, #1c2541, #0b132b);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 8px 0;
+    color: var(--accent);
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  header p {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--muted);
+  }
+  .student-info {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .student-info input {
+    background: #0b132b;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    width: 260px;
+  }
+  .section {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+  .section h2 {
+    margin-top: 0;
+    color: var(--accent-alt);
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .instructions {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .question-item {
+    background: rgba(11, 19, 43, 0.6);
+    border-left: 4px solid var(--border);
+    padding: 15px 18px;
+    margin-bottom: 15px;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.15rem;
+    transition: border-color 0.3s;
+  }
+  .question-item.correct-box { border-left-color: var(--correct); }
+  .question-item.wrong-box { border-left-color: var(--wrong); }
+  select, input[type="text"] {
+    background-color: #0b132b;
+    color: var(--accent);
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 5px;
+  }
+  select:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .vocab-grid { grid-template-columns: 1fr; }
+  }
+  .vocab-column h3 {
+    color: var(--accent);
+    margin-top: 0;
+    font-size: 1.3rem;
+  }
+  .word-bank {
+    background: #0b132b;
+    border: 1px dashed var(--accent);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .feedback {
+    display: block;
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .feedback.ok { color: var(--correct); }
+  .feedback.err { color: var(--wrong); }
+  .controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 30px 0;
+    flex-wrap: wrap;
+  }
+  button {
+    padding: 14px 28px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.1s, opacity 0.2s;
+  }
+  button:hover { opacity: 0.9; }
+  button:active { transform: scale(0.98); }
+  .btn-check { background-color: var(--accent); color: #0b132b; }
+  .btn-reset { background-color: var(--border); color: var(--text); }
+  #score-banner {
+    display: none;
+    background: #0b132b;
+    border: 2px solid var(--accent-alt);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--accent-alt);
+    margin-bottom: 30px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Picken-Glish Aviation &bull; Interactive Worksheet</h1>
+    <p>ICAO ESL Level 3 &mdash; Present Perfect vs. Present Perfect Progressive &amp; Operational Vocabulary</p>
+    <div class="student-info">
+      <input type="text" placeholder="Callsign / Student Name">
+      <input type="text" placeholder="Role (Pilot / ATCO)">
+      <input type="text" placeholder="Date">
+    </div>
+  </header>
+
+  <div id="score-banner"></div>
+
+  <!-- SECTION 1: GRAMMAR CHOICE -->
+  <div class="section">
+    <h2>Part 1: Present Perfect vs. Present Perfect Progressive (Radio &amp; Operations)</h2>
+    <p class="instructions">Select the best verb form for each aviation situation. Remember: use <strong>Present Perfect</strong> for completed actions/states and <strong>Present Perfect Progressive</strong> for ongoing actions/durations.</p>
+
+    <div class="question-item" data-answer="have been holding" data-exp="Ongoing action with duration ('for 25 minutes') -> Present Perfect Progressive.">
+      1. Approach, FastAir 402. We 
+      <select class="q-input">
+        <option value="">-- choose --</option>
+        <option value="have held">have held</option>
+        <option value="have been holding">have been holding</option>
+      </select>
+      at VOR ALPHA for 25 minutes and fuel is getting low.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="question-item" data-answer="has cleared" data-exp="Completed action with immediate result -> Present Perfect.">
+      2. Tower, Ground. Maintenance 
+      <select class="q-input">
+        <option value="">-- choose --</option>
+        <option value="has cleared">has cleared</option>
+        <option value="has been clearing">has been clearing</option>
+      </select>
+      the debris from Runway 27L; it is ready for inspection.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="question-item" data-answer="have been experiencing" data-exp="Ongoing condition happening continuously since a point in time -> Present Perfect Progressive.">
+      3. Center, SkyJet 19. We 
+      <select class="q-input">
+        <option value="">-- choose --</option>
+        <option value="have experienced">have experienced</option>
+        <option value="have been experiencing">have been experiencing</option>
+      </select>
+      severe moderate-to-severe turbulence since passing FL290.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="question-item" data-answer="has declared" data-exp="Single completed action -> Present Perfect.">
+      4. All stations, standby. An inbound B737 
+      <select class="q-input">
+        <option value="">-- choose --</option>
+        <option value="has declared">has declared</option>
+        <option value="has been declaring">has been declaring</option>
+      </select>
+      a hydraulic emergency.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="question-item" data-answer="have been trying" data-exp="Repeated/ongoing effort over a period of time -> Present Perfect Progressive.">
+      5. Radar, Aero 88. We 
+      <select class="q-input">
+        <option value="">-- choose --</option>
+        <option value="have tried">have tried</option>
+        <option value="have been trying">have been trying</option>
+      </select>
+      to contact Lima Control on 124.5 for ten minutes with no reply.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="question-item" data-answer="has already vacated" data-exp="'Already' signals a completed action -> Present Perfect.">
+      6. FastAir 402, cleared to land Runway 09. Preceding traffic 
+      <select class="q-input">
+        <option value="">-- choose --</option>
+        <option value="has already vacated">has already vacated</option>
+        <option value="has already been vacating">has already been vacating</option>
+      </select>
+      the runway.
+      <span class="feedback"></span>
+    </div>
+  </div>
+
+  <!-- SECTION 2: FILL IN THE BLANKS -->
+  <div class="section">
+    <h2>Part 2: Complete the Transmissions (Present Perfect / Progressive)</h2>
+    <p class="instructions">Type the correct Present Perfect or Present Perfect Progressive form of the verb in parentheses.</p>
+
+    <div class="question-item" data-answer="has been raining" data-exp="Ongoing weather condition since morning -> has been raining.">
+      1. Visibility is dropping because it <input type="text" class="q-input" placeholder="verb..."> (rain) heavily since 0600Z.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="question-item" data-answer="have lost" data-exp="Completed event / sudden state change -> have lost.">
+      2. Mayday, Mayday, Mayday. We <input type="text" class="q-input" placeholder="verb..."> (lose) power in engine number two.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="question-item" data-answer="has been burning" data-exp="Continuous action over 40 minutes -> has been burning.">
+      3. Fire services are on scene; the auxiliary fuel tank <input type="text" class="q-input" placeholder="verb..."> (burn) for 40 minutes.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="question-item" data-answer="have just received" data-exp="'Just' indicates a recently completed action -> have just received.">
+      4. Alpha 304, we <input type="text" class="q-input" placeholder="verb..."> (just / receive) an updated SIGMET for your route.
+      <span class="feedback"></span>
+    </div>
+  </div>
+
+  <!-- SECTION 3: VOCABULARY MATCHING (PILOTS & ATCO) -->
+  <div class="section">
+    <h2>Part 3: ICAO Level 3 Operational Vocabulary (Pilots &amp; ATCO)</h2>
+    <p class="instructions">Match the 10 Pilot terms and 10 ATCO terms to their operational contexts.</p>
+
+    <div class="vocab-grid">
+      <!-- PILOTS -->
+      <div class="vocab-column">
+        <h3>Pilot Vocabulary (10 Terms)</h3>
+        <div class="word-bank">
+          Word Bank: windshear &bull; bird strike &bull; flameout &bull; squawk &bull; go-around &bull; stall &bull; icing &bull; fuel dump &bull; diversion &bull; decompression
+        </div>
+
+        <div class="question-item" data-answer="windshear" data-exp="Sudden change in wind speed/direction.">
+          1. Sudden change in wind speed/direction on final:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="bird strike" data-exp="Collision with birds during takeoff or climb.">
+          2. Collision with birds right after liftoff:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="flameout" data-exp="Unintended extinction of flame in a jet engine.">
+          3. Sudden jet engine combustion extinction:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="squawk" data-exp="Transponder code setting (e.g., 7700).">
+          4. Set transponder code (e.g., 7700 for emergency):
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="go-around" data-exp="Aborted landing maneuver.">
+          5. Aborted landing procedure to climb back out:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="stall" data-exp="Loss of aerodynamic lift due to critical angle of attack.">
+          6. Loss of lift when wing exceeds critical angle:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="icing" data-exp="Ice accumulation on airframe or engines.">
+          7. Accumulation of frozen moisture on wings:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="fuel dump" data-exp="Jettisoning fuel to reduce landing weight.">
+          8. Releasing fuel in flight to reach safe landing weight:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="diversion" data-exp="Proceeding to an alternate airport.">
+          9. Rerouting to an alternate aerodrome:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="decompression" data-exp="Loss of cabin pressure requiring emergency descent.">
+          10. Loss of cabin pressurization at high altitude:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="windshear">windshear</option>
+            <option value="bird strike">bird strike</option>
+            <option value="flameout">flameout</option>
+            <option value="squawk">squawk</option>
+            <option value="go-around">go-around</option>
+            <option value="stall">stall</option>
+            <option value="icing">icing</option>
+            <option value="fuel dump">fuel dump</option>
+            <option value="diversion">diversion</option>
+            <option value="decompression">decompression</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+      </div>
+
+      <!-- ATCO -->
+      <div class="vocab-column">
+        <h3>ATCO Vocabulary (10 Terms)</h3>
+        <div class="word-bank">
+          Word Bank: holding pattern &bull; vectoring &bull; runway incursion &bull; separation &bull; wake turbulence &bull; slot time &bull; clearance &bull; missed approach &bull; airspace &bull; handoff
+        </div>
+
+        <div class="question-item" data-answer="holding pattern" data-exp="Racetrack flight path used to delay aircraft.">
+          1. Racetrack path to delay inbound traffic:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="vectoring" data-exp="Assigning specific headings via radar.">
+          2. Guiding aircraft via radar headings:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="runway incursion" data-exp="Unauthorized presence on a runway.">
+          3. Unauthorized vehicle or aircraft on an active runway:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="separation" data-exp="Minimum safe vertical or horizontal distance.">
+          4. Safe vertical or horizontal spacing between aircraft:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="wake turbulence" data-exp="Air disturbance generated behind heavy aircraft.">
+          5. Wingtip vortices behind a heavy jet:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="slot time" data-exp="Allocated takeoff or landing window.">
+          6. Scheduled window for departure/arrival flow control:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="clearance" data-exp="Official ATC authorization to proceed.">
+          7. ATC authorization for an aircraft to proceed:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="missed approach" data-exp="Published procedure when an instrument approach cannot be completed.">
+          8. Published climb procedure when landing cannot continue:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="airspace" data-exp="Controlled or uncontrolled portion of the sky.">
+          9. Designated sector of controlled or uncontrolled sky:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+
+        <div class="question-item" data-answer="handoff" data-exp="Transfer of radar/radio control to the next sector.">
+          10. Transfer of control from one ATC sector to another:
+          <select class="q-input">
+            <option value="">-- select --</option>
+            <option value="holding pattern">holding pattern</option>
+            <option value="vectoring">vectoring</option>
+            <option value="runway incursion">runway incursion</option>
+            <option value="separation">separation</option>
+            <option value="wake turbulence">wake turbulence</option>
+            <option value="slot time">slot time</option>
+            <option value="clearance">clearance</option>
+            <option value="missed approach">missed approach</option>
+            <option value="airspace">airspace</option>
+            <option value="handoff">handoff</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn-check" onclick="gradeWorksheet()">Check Answers</button>
+    <button class="btn-reset" onclick="resetWorksheet()">Reset Worksheet</button>
+  </div>
+</div>
+
+<script>
+function gradeWorksheet() {
+  const items = document.querySelectorAll('.question-item');
+  let score = 0;
+  let total = items.length;
+
+  items.forEach(item => {
+    const input = item.querySelector('.q-input');
+    const feedback = item.querySelector('.feedback');
+    const correctAns = item.getAttribute('data-answer').trim().toLowerCase();
+    const explanation = item.getAttribute('data-exp');
+    const userAns = input.value.trim().toLowerCase();
+
+    item.classList.remove('correct-box', 'wrong-box');
+
+    if (userAns === correctAns) {
+      score++;
+      item.classList.add('correct-box');
+      feedback.className = 'feedback ok';
+      feedback.textContent = '✓ Correct! ' + explanation;
+    } else {
+      item.classList.add('wrong-box');
+      feedback.className = 'feedback err';
+      feedback.textContent = '✗ Correct answer: "' + item.getAttribute('data-answer') + '" — ' + explanation;
+    }
+  });
+
+  const banner = document.getElementById('score-banner');
+  const pct = Math.round((score / total) * 100);
+  banner.style.display = 'block';
+  banner.textContent = `Score: ${score} / ${total} (${pct}%) — ${pct >= 80 ? 'Cleared for ICAO Level 3!' : 'Review the feedback below and try again.'}`;
+  banner.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetWorksheet() {
+  const items = document.querySelectorAll('.question-item');
+  items.forEach(item => {
+    const input = item.querySelector('.q-input');
+    const feedback = item.querySelector('.feedback');
+    input.value = '';
+    feedback.textContent = '';
+    item.classList.remove('correct-box', 'wrong-box');
+  });
+  document.getElementById('score-banner').style.display = 'none';
+}
+</script>
+</body>
+</html>
